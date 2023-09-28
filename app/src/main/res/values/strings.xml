@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">HealthAppElderly</string>
+    <string name="telefonnummer">Skriv in telefonnummer</string>
+    <string name="send_verification_code">Send Verification Code</string>
+    <string name="sign_up">SIGN UP</string>
 </resources>
