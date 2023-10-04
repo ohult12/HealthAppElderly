@@ -3,4 +3,5 @@
     <string name="telefonnummer">Skriv in telefonnummer</string>
     <string name="send_verification_code">Send Verification Code</string>
     <string name="sign_up">SIGN UP</string>
+    <string name="authenticate_elder">Authenticate Elder</string>
 </resources>

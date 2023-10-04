@@ -28,7 +28,7 @@ import com.google.firebase.ktx.Firebase;
 
 public class MainActivity extends AppCompatActivity {
     EditText loginCode;
-    Button signupBtn, loginBtn;
+    Button firstLoginBtn, loginBtn;
     FirebaseAuth mAuth;
 
     @Override
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        signupBtn = findViewById(R.id.signupBtn);
+        firstLoginBtn = findViewById(R.id.firstTimeLoginBtn);
         loginBtn = findViewById(R.id.loginButton);
         loginCode = findViewById(R.id.pin);
         mAuth = FirebaseAuth.getInstance();
@@ -49,33 +49,17 @@ public class MainActivity extends AppCompatActivity {
                 if(TextUtils.isEmpty(pcode)){
                     Toast.makeText(MainActivity.this, "Felaktig kod", Toast.LENGTH_SHORT).show();
                 } else {
-                    verifyCode(pcode);
+
                 }
             }
         });
 
-        signupBtn.setOnClickListener(new View.OnClickListener(){
+        firstLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), phoneSignUpTest.class);
+                Intent intent = new Intent(getApplicationContext(), FirstLogin.class);
                 startActivity(intent);
                 finish();
-            }
-        });
-    }
-    private void verifyCode(String code) {
-        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationID, code);
-        signinbyCredentials(credential);
-    }
-
-    private void signinbyCredentials(PhoneAuthCredential credential) {
-        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-        firebaseAuth.signInWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
-                    Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                }
             }
         });
     }
