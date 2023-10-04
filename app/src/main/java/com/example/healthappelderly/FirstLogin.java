@@ -41,21 +41,19 @@ public class FirstLogin extends AppCompatActivity {
                 if(!isFormCorrect(personalNbr, pin)){
                     return;
                 }
-                mAuth.signInWithEmailAndPassword(personalNbr, pin)
-                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
+                mAuth.signInWithEmailAndPassword(personalNbr, pin).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
 
-                                if (task.isSuccessful()) {
-                                    Toast.makeText(FirstLogin.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                                    startActivity(new Intent(getApplicationContext(), ElderView.class));
-                                    finish();
-                                } else {
-                                    Toast.makeText(FirstLogin.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
-
-                                }
-                            }
-                        });
+                        if (task.isSuccessful()) {
+                            Toast.makeText(FirstLogin.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getApplicationContext(), ElderView.class));
+                            finish();
+                        } else {
+                            Toast.makeText(FirstLogin.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
             }
         });
     }
