@@ -103,13 +103,8 @@ public class MainActivity extends AppCompatActivity {
         rgLanguage.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-
-            }
-        });rgLanguage.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 if(i == R.id.rb_english) {
-                    changeLocale("en");
+                    LocaleHelper.setLocale(MainActivity.this,"en");
                     rbEnglish.setChecked(true);
                     welcome.setText(R.string.welcome);
                     info.setText(R.string.enter_4_digit_pin);
@@ -117,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
                     loginBtn.setText(R.string.login);
                     firstLoginBtn.setText(R.string.login_elderly);
                 } else if (i == R.id.rb_swedish) {
-                    changeLocale("sv");
+                    LocaleHelper.setLocale(MainActivity.this, "sv");
                     rbSwedish.setChecked(true);
                     welcome.setText(R.string.welcome);
                     info.setText(R.string.enter_4_digit_pin);
