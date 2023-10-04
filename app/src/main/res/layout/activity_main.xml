@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:ems="10"
-        android:hint="Enter 4 digit PIN"
+        android:hint="@string/input_4_digit_pin"
         android:inputType="numberPassword"
         android:maxLength="4"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -23,7 +23,7 @@
         android:id="@+id/infoText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Enter your 4 digit PIN below to log in!"
+        android:text="@string/enter_4_digit_pin"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,7 +36,7 @@
         android:id="@+id/welcomeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Welcome!"
+        android:text="@string/welcome"
         android:textSize="36sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -48,7 +48,7 @@
         android:id="@+id/loginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="LOG IN"
+        android:text="@string/login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -59,11 +59,43 @@
         android:id="@+id/firstTimeLoginBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Log in new Elderly"
+        android:text="@string/login_elderly"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.808"  />
+
+    <RadioGroup
+        android:id="@+id/radiog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.878">
+
+        <RadioButton
+            android:id="@+id/rb_swedish"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
+            android:layout_weight="1"
+            android:padding="8dp"
+            android:text="@string/swedish" />
+
+        <RadioButton
+            android:id="@+id/rb_english"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+
+            android:padding="8dp"
+            android:text="@string/english" />
+
+    </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
