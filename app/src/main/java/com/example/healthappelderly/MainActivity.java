@@ -6,11 +6,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -19,12 +25,19 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.Locale;
+
 public class MainActivity extends AppCompatActivity {
     String PREF_KEY = "ElderApp_User_Email";
     EditText loginCode;
     Button firstLoginBtn, loginBtn;
     String email;
     FirebaseAuth mAuth;
+    Locale locale;
+    RadioGroup rgLanguage;
+    RadioButton rbEnglish, rbSwedish;
+    TextView welcome;
+    TextView info;
     @Override
     public void onStart() {
         super.onStart();
@@ -47,7 +60,11 @@ public class MainActivity extends AppCompatActivity {
         loginBtn = findViewById(R.id.loginButton);
         loginCode = findViewById(R.id.pin);
         mAuth = FirebaseAuth.getInstance();
-
+        rgLanguage = findViewById(R.id.radiog);
+        rbEnglish = findViewById(R.id.rb_english);
+        rbSwedish = findViewById(R.id.rb_swedish);
+        welcome = findViewById(R.id.welcomeText);
+        info = findViewById(R.id.infoText);
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -83,6 +100,33 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
+        rgLanguage.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+
+            }
+        });rgLanguage.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if(i == R.id.rb_english) {
+                    changeLocale("en");
+                    rbEnglish.setChecked(true);
+                    welcome.setText(R.string.welcome);
+                    info.setText(R.string.enter_4_digit_pin);
+                    loginCode.setHint(R.string.input_4_digit_pin);
+                    loginBtn.setText(R.string.login);
+                    firstLoginBtn.setText(R.string.login_elderly);
+                } else if (i == R.id.rb_swedish) {
+                    changeLocale("sv");
+                    rbSwedish.setChecked(true);
+                    welcome.setText(R.string.welcome);
+                    info.setText(R.string.enter_4_digit_pin);
+                    loginCode.setHint(R.string.input_4_digit_pin);
+                    loginBtn.setText(R.string.login);
+                    firstLoginBtn.setText(R.string.login_elderly);
+                }
+            }
+        });
     }
 
     private String getLocalString() {
@@ -100,5 +144,14 @@ public class MainActivity extends AppCompatActivity {
         } else {
             return true;
         }
+    }
+    private void changeLocale(String lang) {
+        locale = new Locale(lang);
+        Locale.setDefault(locale);
+        Resources resources = getBaseContext().getResources();
+        Configuration config = resources.getConfiguration();
+        config.setLocale(locale);
+        DisplayMetrics metrics = resources.getDisplayMetrics();
+        resources.updateConfiguration(config, metrics);
     }
 }

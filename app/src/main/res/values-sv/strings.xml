@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">HealthAppElderly</string>
+    <string name="telefonnummer">Skriv in telefonnummer</string>
+    <string name="send_verification_code">Skicka Verifieringskod</string>
+    <string name="sign_up">REGISTRERA</string>
+    <string name="authenticate_elder">Autentisera Gamling</string>
+    <string name="swedish">Svenska</string>
+    <string name="english">English</string>
+    <string name="login_elderly">Logga in ny Gamling</string>
+    <string name="login">LOGGA IN</string>
+    <string name="welcome">Välkommen!</string>
+    <string name="enter_4_digit_pin">Skriv in din 4-siffriga PIN under för att logga in!</string>
+    <string name="input_4_digit_pin">Skriv 4-siffrig PIN</string>
+    <string name="elder_view">Gamling vy</string>
+    <string name="logged_in_as">Inloggad som</string>
+    <string name="log_out">Logga ut</string>
+    <string name="log_in_first">Logga in för första gången</string>
+    <string name="email">Email:</string>
+    <string name="example_mail">exempel@tjänst.se</string>
+    <string name="code">Kod:</string>
+    <string name="pin_hint_x">XXXX</string>
+</resources>

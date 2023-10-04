@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="Logga in för första gången"
+        android:text="@string/log_in_first"
         android:textSize="30dp"
         android:layout_marginBottom="100dp" />
 
@@ -22,7 +22,7 @@
         android:id="@+id/tvPersonalNbr"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Email:"
+        android:text="@string/email"
         android:layout_marginLeft="10dp"
         android:textSize="20sp"
         android:layout_below="@+id/header" />
@@ -32,7 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/blue"
-        android:hint="exempel@tjänst.se"
+        android:hint="@string/example_mail"
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
@@ -49,7 +49,7 @@
         android:id="@+id/tvEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Kod:"
+        android:text="@string/code"
         android:layout_marginLeft="10dp"
         android:textSize="20sp"
         android:layout_below="@+id/etEmail"/>
@@ -59,7 +59,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/blue"
-        android:hint="XXXX"
+        android:hint="@string/pin_hint_x"
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
@@ -70,6 +70,7 @@
         android:drawableLeft="@drawable/baseline_key_24"
         android:inputType="numberPassword"
         android:layout_below="@id/tvEmail"
+        android:maxLength="4"
         />
 
 
@@ -80,7 +81,7 @@
         android:layout_below="@+id/etPIN"
         android:layout_marginTop="20dp"
         android:gravity="center"
-        android:text="Logga in"
+        android:text="@string/login"
         android:background="@color/blue"
         android:layout_centerHorizontal="true"
 
