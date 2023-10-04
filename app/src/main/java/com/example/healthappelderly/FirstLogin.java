@@ -3,7 +3,9 @@ package com.example.healthappelderly;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -17,7 +19,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class FirstLogin extends AppCompatActivity {
-
+    String PREF_KEY = "ElderApp_User_Email";
     EditText etEmail, etPIN;
     Button sendBtn;
     FirebaseAuth mAuth;
@@ -33,19 +35,20 @@ public class FirstLogin extends AppCompatActivity {
         sendBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String personalNbr, pin;
-                personalNbr = String.valueOf(etEmail.getText());
+                String email, pin;
+                email = String.valueOf(etEmail.getText());
                 pin = String.valueOf(etPIN.getText());
                 pin = "00" + pin;
-
-                if(!isFormCorrect(personalNbr, pin)){
+                if(!isFormCorrect(email, pin)){
                     return;
                 }
-                mAuth.signInWithEmailAndPassword(personalNbr, pin).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                mAuth.signInWithEmailAndPassword(email, pin).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                         if (task.isSuccessful()) {
+                            saveStringLocally(email);
+
                             Toast.makeText(FirstLogin.this, "Login Successful", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getApplicationContext(), ElderView.class));
                             finish();
@@ -56,6 +59,13 @@ public class FirstLogin extends AppCompatActivity {
                 });
             }
         });
+    }
+
+    private void saveStringLocally(String email) {
+        SharedPreferences preferences = getSharedPreferences("EldercareApp", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(PREF_KEY, email);
+        editor.apply();
     }
 
     private boolean isFormCorrect(String personalNbr, String pin) {
