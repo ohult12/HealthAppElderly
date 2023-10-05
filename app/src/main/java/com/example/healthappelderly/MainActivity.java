@@ -11,6 +11,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -21,6 +22,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
     String PREF_KEY = "ElderApp_User_Email";
+    TextView twUserEmail;
     EditText loginCode;
     Button firstLoginBtn, loginBtn;
     String email;
@@ -42,11 +44,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        email = getLocalString();
+        twUserEmail = findViewById(R.id.logInAs);
         firstLoginBtn = findViewById(R.id.firstTimeLoginBtn);
         loginBtn = findViewById(R.id.loginButton);
         loginCode = findViewById(R.id.pin);
         mAuth = FirebaseAuth.getInstance();
+
+        email = getLocalString();
+        if(email == null){
+            twUserEmail.setText("");
+        } else {
+            twUserEmail.setText("Log in as " + email);
+        }
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override

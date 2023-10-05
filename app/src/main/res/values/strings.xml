@@ -4,4 +4,7 @@
     <string name="send_verification_code">Send Verification Code</string>
     <string name="sign_up">SIGN UP</string>
     <string name="authenticate_elder">Authenticate Elder</string>
+    <string name="log_in_as_g">
+        Log in as
+    </string>
 </resources>
