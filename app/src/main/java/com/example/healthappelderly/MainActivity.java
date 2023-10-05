@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
         rbSwedish = findViewById(R.id.rb_swedish);
         welcome = findViewById(R.id.welcomeText);
         info = findViewById(R.id.infoText);
+
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -139,14 +140,5 @@ public class MainActivity extends AppCompatActivity {
         } else {
             return true;
         }
-    }
-    private void changeLocale(String lang) {
-        locale = new Locale(lang);
-        Locale.setDefault(locale);
-        Resources resources = getBaseContext().getResources();
-        Configuration config = resources.getConfiguration();
-        config.setLocale(locale);
-        DisplayMetrics metrics = resources.getDisplayMetrics();
-        resources.updateConfiguration(config, metrics);
     }
 }

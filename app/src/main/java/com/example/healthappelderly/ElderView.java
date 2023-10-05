@@ -52,7 +52,7 @@ public class ElderView extends AppCompatActivity {
         email = user.getEmail();
 
         loginStr = String.valueOf(loggedInStr.getText());
-        loginStr = loginStr + email;
+        loginStr = loginStr + ": " + email;
         loggedInStr.setText(loginStr);
 
         btnLogout.setOnClickListener(new View.OnClickListener(){
@@ -71,12 +71,18 @@ public class ElderView extends AppCompatActivity {
                     LocaleHelper.setLocale(ElderView.this,"en");
                     rbEnglish.setChecked(true);
                     loggedInStr.setText(R.string.logged_in_as);
+                    String mailStr = String.valueOf(loggedInStr.getText());
+                    mailStr = mailStr + ": " + email;
+                    loggedInStr.setText(mailStr);
                     elder.setText(R.string.elder_view);
                     btnLogout.setText(R.string.log_out);
                 } else if (i == R.id.rb_swedish1) {
                     LocaleHelper.setLocale(ElderView.this, "sv");
                     rbSwedish.setChecked(true);
                     loggedInStr.setText(R.string.logged_in_as);
+                    String mailStr = String.valueOf(loggedInStr.getText());
+                    mailStr = mailStr + ": " + email;
+                    loggedInStr.setText(mailStr);
                     elder.setText(R.string.elder_view);
                     btnLogout.setText(R.string.log_out);
                 }
