@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -16,7 +18,9 @@ public class ElderView extends AppCompatActivity {
     TextView loggedInStr;
     Button btnLogout;
     FirebaseAuth mAuth;
-
+    TextView elder;
+    RadioGroup rgLanguage;
+    RadioButton rbEnglish, rbSwedish;
     @Override
     public void onStart() {
         super.onStart();
@@ -37,6 +41,10 @@ public class ElderView extends AppCompatActivity {
         String loginStr, email;
         btnLogout = findViewById(R.id.logoutButton);
         loggedInStr = findViewById(R.id.loggedInUser);
+        elder = findViewById(R.id.header_text);
+        rgLanguage = findViewById(R.id.radiog1);
+        rbEnglish = findViewById(R.id.rb_english1);
+        rbSwedish = findViewById(R.id.rb_swedish1);
 
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -44,7 +52,7 @@ public class ElderView extends AppCompatActivity {
         email = user.getEmail();
 
         loginStr = String.valueOf(loggedInStr.getText());
-        loginStr = loginStr + email;
+        loginStr = loginStr + ": " + email;
         loggedInStr.setText(loginStr);
 
         btnLogout.setOnClickListener(new View.OnClickListener(){
@@ -54,6 +62,30 @@ public class ElderView extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
                 finish();
+            }
+        });
+        rgLanguage.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if(i == R.id.rb_english1) {
+                    LocaleHelper.setLocale(ElderView.this,"en");
+                    rbEnglish.setChecked(true);
+                    loggedInStr.setText(R.string.logged_in_as);
+                    String mailStr = String.valueOf(loggedInStr.getText());
+                    mailStr = mailStr + ": " + email;
+                    loggedInStr.setText(mailStr);
+                    elder.setText(R.string.elder_view);
+                    btnLogout.setText(R.string.log_out);
+                } else if (i == R.id.rb_swedish1) {
+                    LocaleHelper.setLocale(ElderView.this, "sv");
+                    rbSwedish.setChecked(true);
+                    loggedInStr.setText(R.string.logged_in_as);
+                    String mailStr = String.valueOf(loggedInStr.getText());
+                    mailStr = mailStr + ": " + email;
+                    loggedInStr.setText(mailStr);
+                    elder.setText(R.string.elder_view);
+                    btnLogout.setText(R.string.log_out);
+                }
             }
         });
     }

@@ -10,7 +10,7 @@
         android:id="@+id/header_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Elder view"
+        android:text="@string/elder_view"
         android:textSize="40sp"
         android:gravity="center"
         android:layout_centerVertical="true" />
@@ -19,17 +19,44 @@
         android:id="@+id/loggedInUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Logged in as "/>
+        android:text="@string/logged_in_as"/>
 
     <Button
         android:id="@+id/logoutButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Log out"
+        android:text="@string/log_out"
         android:textSize="20sp"
         android:padding="40dp"
         android:backgroundTint="@color/red"
         android:layout_below="@+id/header_text"
         android:layout_centerHorizontal="true" />
+
+    <RadioGroup
+        android:id="@+id/radiog1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/logoutButton"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_swedish1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
+            android:layout_weight="1"
+            android:padding="8dp"
+            android:text="@string/swedish" />
+
+        <RadioButton
+            android:id="@+id/rb_english1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+
+            android:padding="8dp"
+            android:text="@string/english" />
+
+    </RadioGroup>
 
 </RelativeLayout>

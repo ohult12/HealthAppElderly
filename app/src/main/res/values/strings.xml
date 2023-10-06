@@ -1,10 +1,25 @@
 <resources>
     <string name="app_name">HealthAppElderly</string>
-    <string name="telefonnummer">Skriv in telefonnummer</string>
+    <string name="telefonnummer">Enter phone number</string>
     <string name="send_verification_code">Send Verification Code</string>
     <string name="sign_up">SIGN UP</string>
     <string name="authenticate_elder">Authenticate Elder</string>
     <string name="log_in_as_g">
         Log in as
     </string>
+    <string name="swedish">Svenska</string>
+    <string name="english">English</string>
+    <string name="login_elderly">Log in new Elderly</string>
+    <string name="login">LOG IN</string>
+    <string name="welcome">Welcome!</string>
+    <string name="enter_4_digit_pin">Enter your 4 digit PIN below to log in!</string>
+    <string name="input_4_digit_pin">Enter 4 digit PIN</string>
+    <string name="elder_view">Elder view</string>
+    <string name="logged_in_as">Logged in as </string>
+    <string name="log_out">Log out</string>
+    <string name="log_in_first">Log in for the first time</string>
+    <string name="email">Email:</string>
+    <string name="example_mail">example@service.com</string>
+    <string name="code">Code:</string>
+    <string name="pin_hint_x">XXXX</string>
 </resources>
