@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.Locale;
 
 public class LocaleHelper extends AppCompatActivity {
+    public static final String LANG_PREF = "Lang Prefs";
     public static void setLocale(Context context, String lang) {
         changeLocale(context, lang);
     }

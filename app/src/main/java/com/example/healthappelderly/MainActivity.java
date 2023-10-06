@@ -68,6 +68,13 @@ public class MainActivity extends AppCompatActivity {
         welcome = findViewById(R.id.welcomeText);
         info = findViewById(R.id.infoText);
 
+        String lang = getLocale();
+        LocaleHelper.setLocale(MainActivity.this, lang);
+        welcome.setText(R.string.welcome);
+        info.setText(R.string.enter_4_digit_pin);
+        loginCode.setHint(R.string.input_4_digit_pin);
+        loginBtn.setText(R.string.login);
+
         email = getLocalString();
         if(email == null){
             twUserEmail.setText("");
@@ -115,6 +122,7 @@ public class MainActivity extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 if(i == R.id.rb_english) {
                     LocaleHelper.setLocale(MainActivity.this,"en");
+                    saveLocale("en");
                     rbEnglish.setChecked(true);
                     welcome.setText(R.string.welcome);
                     info.setText(R.string.enter_4_digit_pin);
@@ -123,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
                     firstLoginBtn.setText(R.string.login_elderly);
                 } else if (i == R.id.rb_swedish) {
                     LocaleHelper.setLocale(MainActivity.this, "sv");
+                    saveLocale("sv");
                     rbSwedish.setChecked(true);
                     welcome.setText(R.string.welcome);
                     info.setText(R.string.enter_4_digit_pin);
@@ -149,5 +158,15 @@ public class MainActivity extends AppCompatActivity {
         } else {
             return true;
         }
+    }
+    private void saveLocale(String lang) {
+        SharedPreferences preferences = getSharedPreferences("Languages", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(LocaleHelper.LANG_PREF, lang);
+        editor.apply();
+    }
+    private String getLocale() {
+        SharedPreferences preferences = getSharedPreferences("Languages", Context.MODE_PRIVATE);
+        return preferences.getString(LocaleHelper.LANG_PREF, "NA");
     }
 }
