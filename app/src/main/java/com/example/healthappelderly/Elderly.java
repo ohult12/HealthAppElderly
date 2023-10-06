@@ -1,48 +1,49 @@
 package com.example.healthappelderly;
 
 public class Elderly {
-    private String User_ID;
-    private String Name;
-    private String Mobile_nr;
-    private String Address;
-    private String Allergies;
-    private String Email;
+    private String user_ID;
+    private String name;
+    private String mobile_nr;
+    private String address;
+    private String allergies;
+    private String email;
+    private Meal meal;
 
     public Elderly() {
 
     }
 
-    public void setAllergies(String allergies) {Allergies = allergies;}
-    public String getAllergies(){return Allergies;}
-    public void setEmail(String email){Email = email;};
+    public void setAllergies(String allergies) {this.allergies = allergies;}
+    public String getAllergies(){return this.allergies;}
+    public void setEmail(String email){this.email = email;};
 
-    public String getEmail() {return Email;}
+    public String getEmail() {return this.email;}
 
     public String getUser_ID() {
-        return User_ID;
+        return this.user_ID;
     }
     public void setUser_ID(String user_ID) {
-        User_ID = user_ID;
+        this.user_ID = user_ID;
     }
     public String getName() {
-        return Name;
+        return this.name;
     }
     public void setName(String Name) {
-        this.Name = Name;
+        this.name = Name;
     }
 
     public String getMobile_nr() {
-        return Mobile_nr;
+        return this.mobile_nr;
     }
     public void setMobile_nr(String mobile_nr) {
-        Mobile_nr = mobile_nr;
+        this.mobile_nr = mobile_nr;
     }
 
     public String getAddress() {
-        return Address;
+        return this.address;
     }
     public void setAddress(String address) {
-        Address = address;
+        this.address = address;
     }
 
 }

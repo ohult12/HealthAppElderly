@@ -61,6 +61,7 @@ public class ElderlySignUp extends AppCompatActivity {
                 final String address = String.valueOf(etAddress.getText());
                 final String allergies = String.valueOf(etAllergies.getText());
                 final String username = String.valueOf(etUsername.getText());
+                    //Set beginning of pincode to 00 to satisfy Firebase min size password req of 6.
                 final String pin = "00" + String.valueOf(etPin.getText());
 
                 if(!isFormCorrect(fullName, phone, email, address, username, pin)) {
@@ -82,6 +83,7 @@ public class ElderlySignUp extends AppCompatActivity {
                                         // Sign in success, update UI with the signed-in user's information
                                         Log.d(TAG, "createUserWithEmail:success");
                                         addElderToDatabase(fullName, phone, email, address, allergies, username);
+                                        changeActivity(MainActivity.class);
 
                                     } else {
                                         // If sign in fails, display a message to the user.
@@ -102,6 +104,13 @@ public class ElderlySignUp extends AppCompatActivity {
             }
         });
     }
+
+    private void changeActivity(Class activityClass) {
+        Intent intent = new Intent(getApplicationContext(), activityClass);
+        startActivity(intent);
+        finish();
+    }
+
     private boolean isFormCorrect(String name, String phone, String email, String address, String username, String PIN){
         if (TextUtils.isEmpty(email)) {
             Toast.makeText(ElderlySignUp.this, "Enter Email", Toast.LENGTH_SHORT).show();
@@ -133,6 +142,8 @@ public class ElderlySignUp extends AppCompatActivity {
         newElder.setEmail(mail);
         newElder.setAddress(address);
         newElder.setAllergies(allergies);
+        //lägg till tom meal (date?)
+        //lägg till tom lista över caregivers
         dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
