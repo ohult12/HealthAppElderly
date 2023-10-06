@@ -27,16 +27,17 @@ import com.google.firebase.database.ValueEventListener;
 
 public class ElderlySignUp extends AppCompatActivity {
 
-    EditText etFullName, etEmail, etPhone, etAddress, etAllergies, etPin;
+    EditText etFullName, etEmail, etPhone, etAddress, etAllergies, etUsername, etPin;
     Button btnSignUp;
     FirebaseAuth mAuth;
     DatabaseReference dbRef;
-    dbLib dbLib;
+    DbLib dbLib;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_elderly_sign_up);
-        dbLib = new dbLib(this);
+
         dbRef = FirebaseDatabase.getInstance().getReference();
 
         mAuth = FirebaseAuth.getInstance();
@@ -46,44 +47,62 @@ public class ElderlySignUp extends AppCompatActivity {
         etPhone = findViewById(R.id.phoneNumber);
         etAddress = findViewById(R.id.address);
         etAllergies = findViewById(R.id.allergies);
+        etUsername = findViewById(R.id.username);
         etPin = findViewById(R.id.password);
         btnSignUp = findViewById(R.id.signUp);
 
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String fullName, email, phone, address, allergies, pin;
-                fullName = String.valueOf(etFullName.getText());
-                email = String.valueOf(etEmail.getText());
-                phone = String.valueOf(etPhone.getText());
-                address = String.valueOf(etAddress.getText());
-                allergies = String.valueOf(etAllergies.getText());
-                pin = String.valueOf(etPin.getText());
-                pin = "00" + pin;
 
-                if(!isFormCorrect(fullName, phone, email, address, pin)) {
+                final String fullName = String.valueOf(etFullName.getText());
+                final String email = String.valueOf(etEmail.getText());
+                final String phone = String.valueOf(etPhone.getText());
+                final String address = String.valueOf(etAddress.getText());
+                final String allergies = String.valueOf(etAllergies.getText());
+                final String username = String.valueOf(etUsername.getText());
+                final String pin = "00" + String.valueOf(etPin.getText());
+
+                if(!isFormCorrect(fullName, phone, email, address, username, pin)) {
                     return;
                 }
-                mAuth.createUserWithEmailAndPassword(email, pin).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+
+                dbRef.child("Elder").addListenerForSingleValueEvent(new ValueEventListener() {
+
                     @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "createUserWithEmail:success");
-                            addElderToDatabase(fullName, phone, email, address, allergies);
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if(snapshot.hasChild(username)){
+                            Toast.makeText(ElderlySignUp.this, "Username already exists, choose another one", Toast.LENGTH_SHORT).show();
 
                         } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                            mAuth.createUserWithEmailAndPassword(email, pin).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        // Sign in success, update UI with the signed-in user's information
+                                        Log.d(TAG, "createUserWithEmail:success");
+                                        addElderToDatabase(fullName, phone, email, address, allergies, username);
+
+                                    } else {
+                                        // If sign in fails, display a message to the user.
+                                        Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                                    }
+                                }
+                            });
                         }
                     }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
                 });
+
 
             }
         });
     }
-
-    private boolean isFormCorrect(String name, String phone, String email, String address, String PIN){
+    private boolean isFormCorrect(String name, String phone, String email, String address, String username, String PIN){
         if (TextUtils.isEmpty(email)) {
             Toast.makeText(ElderlySignUp.this, "Enter Email", Toast.LENGTH_SHORT).show();
             return false;
@@ -96,14 +115,18 @@ public class ElderlySignUp extends AppCompatActivity {
         }else if (TextUtils.isEmpty(phone)) {
             Toast.makeText(ElderlySignUp.this, "Enter phone number", Toast.LENGTH_SHORT).show();
             return false;
+        }else if (TextUtils.isEmpty(username)) {
+            Toast.makeText(ElderlySignUp.this, "Enter phone number", Toast.LENGTH_SHORT).show();
+            return false;
         }else if (TextUtils.isEmpty(address)){
             Toast.makeText(ElderlySignUp.this, "Enter address", Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
     }
-    public void addElderToDatabase(String name, String number, String mail, String address, String allergies) {
-        String eUID = mAuth.getUid();
+
+
+    public void addElderToDatabase(String name, String number, String mail, String address, String allergies, String username) {
         Elderly newElder = new Elderly();
         newElder.setName(name);
         newElder.setMobile_nr(number);
@@ -114,8 +137,8 @@ public class ElderlySignUp extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 //Databas
-                dbRef.child(eUID).setValue(newElder);
-                Log.i("EYO:", "efter inlägg i databas: " + mAuth.getCurrentUser().getEmail());
+                dbRef.child("Elder").child(username).setValue(newElder);
+                Toast.makeText(ElderlySignUp.this, "New Elder Registered!", Toast.LENGTH_SHORT).show();
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
