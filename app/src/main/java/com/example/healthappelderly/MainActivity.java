@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     String PREF_KEY = "ElderApp_User_Email";
     TextView twUserEmail;
     EditText loginCode;
-    Button firstLoginBtn, loginBtn;
+    Button firstLoginBtn, loginBtn, signUpNewElderBtn;
     String email;
     FirebaseAuth mAuth;
     Locale locale;
@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
         twUserEmail = findViewById(R.id.logInAs);
         firstLoginBtn = findViewById(R.id.firstTimeLoginBtn);
+        signUpNewElderBtn = findViewById(R.id.signUpNewElder);
         loginBtn = findViewById(R.id.loginButton);
         loginCode = findViewById(R.id.pin);
         mAuth = FirebaseAuth.getInstance();
@@ -74,6 +75,14 @@ public class MainActivity extends AppCompatActivity {
         } else {
             twUserEmail.setText("Log in as " + email);
         }
+        signUpNewElderBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), ElderlySignUp.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override

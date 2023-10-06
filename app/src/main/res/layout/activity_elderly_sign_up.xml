@@ -17,7 +17,7 @@
         android:background="@color/blue"
         android:drawableLeft="@drawable/baseline_person_outline_24"
         android:drawablePadding="20dp"
-        android:hint="Full name"
+        android:hint="@string/full_name"
         android:padding="20dp"
         android:textColor="@color/white"
         android:textColorHint="@color/white" />
@@ -27,7 +27,7 @@
         android:id="@+id/email"
         android:layout_below="@+id/fullname"
         android:background="@color/blue"
-        android:hint="Email"
+        android:hint="@string/email"
         android:textColorHint="@color/white"
         android:textColor="@color/white"
         android:layout_margin="10dp"
@@ -40,7 +40,7 @@
         android:id="@+id/phoneNumber"
         android:layout_below="@+id/email"
         android:background="@color/blue"
-        android:hint="Phone number"
+        android:hint="@string/phone_number"
         android:textColorHint="@color/white"
         android:textColor="@color/white"
         android:layout_margin="10dp"
@@ -61,7 +61,7 @@
         android:background="@color/blue"
         android:drawableLeft="@drawable/baseline_home_24"
         android:drawablePadding="20dp"
-        android:hint="Address"
+        android:hint="@string/address"
         android:inputType="textPostalAddress"
         android:padding="20dp"
         android:textColor="@color/white"
@@ -79,29 +79,45 @@
         android:background="@color/blue"
         android:drawableLeft="@drawable/baseline_fastfood_24"
         android:drawablePadding="20dp"
-        android:hint="Allergies"
+        android:hint="@string/allergies"
         android:padding="20dp"
         android:textColor="@color/white"
         android:textColorHint="@color/white" />
 
     <EditText
-        android:id="@+id/password"
+        android:id="@+id/username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/allergies"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         android:background="@color/blue"
-        android:textColorHint="@color/white"
-        android:textColor="@color/white"
-        android:layout_margin="10dp"
+        android:drawableLeft="@drawable/baseline_person_outline_24"
+        android:drawablePadding="20dp"
+        android:hint="@string/username"
         android:padding="20dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:layout_below="@id/allergies"/>
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/username"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/blue"
         android:drawableLeft="@drawable/baseline_key_24"
         android:drawablePadding="20dp"
-        android:hint="4 digit PIN"
-        android:inputType="numberPassword" />
+        android:hint="@string/_4_digit_pin"
+        android:inputType="numberPassword"
+        android:padding="20dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white" />
 
     <Button
         android:id="@+id/signUp"
@@ -110,7 +126,7 @@
         android:layout_below="@+id/password"
         android:layout_margin="20dp"
         android:layout_centerHorizontal="true"
-        android:text="Sign up new Elder"
+        android:text="@string/sign_up_new_elder"
         android:textSize="25dp" />
 
 </RelativeLayout>
