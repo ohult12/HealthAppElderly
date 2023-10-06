@@ -15,6 +15,9 @@
         android:theme="@style/Theme.HealthAppElderly"
         tools:targetApi="31">
         <activity
+            android:name=".ElderlySignUp"
+            android:exported="false" />
+        <activity
             android:name=".ElderView"
             android:exported="false" />
         <activity

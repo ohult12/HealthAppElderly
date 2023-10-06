@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +30,7 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     String PREF_KEY = "ElderApp_User_Email";
+    TextView twUserEmail;
     EditText loginCode;
     Button firstLoginBtn, loginBtn;
     String email;
@@ -55,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        email = getLocalString();
+        twUserEmail = findViewById(R.id.logInAs);
         firstLoginBtn = findViewById(R.id.firstTimeLoginBtn);
         loginBtn = findViewById(R.id.loginButton);
         loginCode = findViewById(R.id.pin);
@@ -72,6 +74,13 @@ public class MainActivity extends AppCompatActivity {
         info.setText(R.string.enter_4_digit_pin);
         loginCode.setHint(R.string.input_4_digit_pin);
         loginBtn.setText(R.string.login);
+
+        email = getLocalString();
+        if(email == null){
+            twUserEmail.setText("");
+        } else {
+            twUserEmail.setText("Log in as " + email);
+        }
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
