@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         welcome = findViewById(R.id.welcomeText);
         info = findViewById(R.id.infoText);
 
-        email = getLocalString();
+        email = getLocalString(PREF_KEY);
         if(email == null){
             twUserEmail.setText("");
         } else {
@@ -142,10 +142,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
-    private String getLocalString() {
+    private String getLocalString(String key) {
         SharedPreferences preferences = getSharedPreferences("EldercareApp", Context.MODE_PRIVATE);
-        return preferences.getString(PREF_KEY, null);
+        return preferences.getString(key, null);
     }
 
     private boolean isFormCorrect(String personalNbr, String pin) {

@@ -19,7 +19,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class FirstLogin extends AppCompatActivity {
-    String PREF_KEY = "ElderApp_User_Email";
+    String EMAIL_KEY = "ElderApp_User_Email";
     EditText etEmail, etPIN;
     Button sendBtn;
     FirebaseAuth mAuth;
@@ -47,7 +47,7 @@ public class FirstLogin extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                         if (task.isSuccessful()) {
-                            saveStringLocally(email);
+                            saveStringLocally(EMAIL_KEY, email);
 
                             Toast.makeText(FirstLogin.this, "Login Successful", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getApplicationContext(), ElderView.class));
@@ -61,10 +61,10 @@ public class FirstLogin extends AppCompatActivity {
         });
     }
 
-    private void saveStringLocally(String email) {
+    private void saveStringLocally(String key, String value) {
         SharedPreferences preferences = getSharedPreferences("EldercareApp", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putString(PREF_KEY, email);
+        editor.putString(key, value);
         editor.apply();
     }
 

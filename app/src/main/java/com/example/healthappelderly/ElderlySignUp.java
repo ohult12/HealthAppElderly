@@ -5,7 +5,9 @@ import static androidx.constraintlayout.widget.StateSet.TAG;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -26,7 +28,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class ElderlySignUp extends AppCompatActivity {
-
+    String USERNAME_KEY = "ElderApp_Username";
     EditText etFullName, etEmail, etPhone, etAddress, etAllergies, etUsername, etPin;
     Button btnSignUp;
     FirebaseAuth mAuth;
@@ -83,6 +85,7 @@ public class ElderlySignUp extends AppCompatActivity {
                                         // Sign in success, update UI with the signed-in user's information
                                         Log.d(TAG, "createUserWithEmail:success");
                                         addElderToDatabase(fullName, phone, email, address, allergies, username);
+                                        saveStringLocally(USERNAME_KEY, username);
                                         changeActivity(MainActivity.class);
 
                                     } else {
@@ -103,6 +106,12 @@ public class ElderlySignUp extends AppCompatActivity {
 
             }
         });
+    }
+    private void saveStringLocally(String key, String value) {
+        SharedPreferences preferences = getSharedPreferences("EldercareApp", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(key, value);
+        editor.apply();
     }
 
     private void changeActivity(Class activityClass) {
