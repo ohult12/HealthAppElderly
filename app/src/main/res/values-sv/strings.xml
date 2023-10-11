@@ -16,8 +16,15 @@
     <string name="logged_in_as">Inloggad som</string>
     <string name="log_out">Logga ut</string>
     <string name="log_in_first">Logga in för första gången</string>
-    <string name="email">Email:</string>
+    <string name="email">Email</string>
     <string name="example_mail">exempel@tjänst.se</string>
     <string name="code">Kod:</string>
     <string name="pin_hint_x">XXXX</string>
+    <string name="full_name">Fullt namn</string>
+    <string name="phone_number">Telefonnummer</string>
+    <string name="address">Adress</string>
+    <string name="allergies">Allergier</string>
+    <string name="_4_digit_pin">4-siffrig kod</string>
+    <string name="sign_up_new_elder">Registrera ny Äldre</string>
+    <string name="username">Användarnamn</string>
 </resources>

@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     String PREF_KEY = "ElderApp_User_Email";
     TextView twUserEmail;
     EditText loginCode;
-    Button firstLoginBtn, loginBtn;
+    Button firstLoginBtn, loginBtn, signUpNewElderBtn;
     String email;
     FirebaseAuth mAuth;
     Locale locale;
@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
         twUserEmail = findViewById(R.id.logInAs);
         firstLoginBtn = findViewById(R.id.firstTimeLoginBtn);
+        signUpNewElderBtn = findViewById(R.id.signUpNewElder);
         loginBtn = findViewById(R.id.loginButton);
         loginCode = findViewById(R.id.pin);
         mAuth = FirebaseAuth.getInstance();
@@ -68,6 +69,9 @@ public class MainActivity extends AppCompatActivity {
         welcome = findViewById(R.id.welcomeText);
         info = findViewById(R.id.infoText);
 
+
+        email = getLocalString(PREF_KEY);
+
         String lang = getLocale();
         LocaleHelper.setLocale(MainActivity.this, lang);
         welcome.setText(R.string.welcome);
@@ -75,12 +79,19 @@ public class MainActivity extends AppCompatActivity {
         loginCode.setHint(R.string.input_4_digit_pin);
         loginBtn.setText(R.string.login);
 
-        email = getLocalString();
         if(email == null){
             twUserEmail.setText("");
         } else {
             twUserEmail.setText("Log in as " + email);
         }
+        signUpNewElderBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), ElderlySignUp.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -142,10 +153,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
-    private String getLocalString() {
+    private String getLocalString(String key) {
         SharedPreferences preferences = getSharedPreferences("EldercareApp", Context.MODE_PRIVATE);
-        return preferences.getString(PREF_KEY, null);
+        return preferences.getString(key, null);
     }
 
     private boolean isFormCorrect(String personalNbr, String pin) {

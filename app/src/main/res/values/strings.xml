@@ -22,4 +22,11 @@
     <string name="example_mail">example@service.com</string>
     <string name="code">Code:</string>
     <string name="pin_hint_x">XXXX</string>
+    <string name="full_name">Full name</string>
+    <string name="phone_number">Phone number</string>
+    <string name="address">Address</string>
+    <string name="allergies">Allergies</string>
+    <string name="_4_digit_pin">4 digit PIN</string>
+    <string name="sign_up_new_elder">Sign up new Elder</string>
+    <string name="username">Username</string>
 </resources>
