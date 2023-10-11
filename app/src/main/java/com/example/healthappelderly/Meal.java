@@ -1,46 +1,66 @@
 package com.example.healthappelderly;
 
+/*enum allergies {
+    NUTS,
+    GLUTEN,
+    LACTOS
+}*/
+
+import com.google.firebase.firestore.IgnoreExtraProperties;
+
+enum mealType {
+    breakfast,
+    lunch,
+    dinner,
+    snack
+}
+@IgnoreExtraProperties
 public class Meal {
-    private String breakfast;
-    private String lunch;
-    private String smallmeal;
-    private String dinner;
+    private mealType type;
+    private String time_of_day;
+    private String date;
+    private String comment;
+    //private ArrayList<allergies> allergy_list;
+    public Meal() {}
+    public Meal(mealType type, String time_of_day, String date, String comment /*, Collection<allergies> allergy_list*/) {
+        this.type = type;
+        this.time_of_day = time_of_day;
+        this.date = date;
+        this.comment = comment;
 
-    public Meal() {
+        //this.allergy_list = new ArrayList<allergies>();
+        //allergy_list.addAll(allergy_list);
 
     }
 
-    public String getBreakfast() {
-        return breakfast;
+    public mealType getType() {
+        return type;
+    }
+    public void setType(mealType type) {
+        this.type = type;
     }
 
-    public void setBreakfast(String breakfast) {
-        this.breakfast = breakfast;
+    public String getTime_of_day() {
+        return time_of_day;
     }
 
-    public String getLunch() {
-        return lunch;
+    public void setTime_of_day(String time_of_day) {
+        this.time_of_day = time_of_day;
     }
 
-    public void setLunch(String lunch) {
-        this.lunch = lunch;
+    public String getDate() {
+        return date;
     }
 
-    public String getSmallmeal() {
-        return smallmeal;
+    public void setDate(String date) {
+        this.date = date;
     }
 
-    public void setSmallmeal(String smallmeal) {
-        this.smallmeal = smallmeal;
+    public String getComment() {
+        return comment;
     }
 
-    public String getDinner() {
-        return dinner;
+    public void setComment(String comment) {
+        this.comment = comment;
     }
-
-    public void setDinner(String dinner) {
-        this.dinner = dinner;
-    }
-
-
 }
