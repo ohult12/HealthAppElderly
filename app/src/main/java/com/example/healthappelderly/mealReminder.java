@@ -56,8 +56,9 @@ public class mealReminder extends AppCompatActivity {
     }
     //Database
     private void getDataFromDatabase() {
-        String uid = user.getUid();
-        databaseReference = FirebaseDatabase.getInstance().getReference(uid);
+
+        String email = user.getEmail();
+        databaseReference = FirebaseDatabase.getInstance().getReference("Elder");
         ArrayList<String> list = new ArrayList<>();
         ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.list_item, list);
         listView.setAdapter(adapter);
