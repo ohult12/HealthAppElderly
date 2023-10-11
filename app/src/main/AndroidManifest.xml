@@ -24,6 +24,9 @@
             android:name=".FirstLogin"
             android:exported="false" />
         <activity
+            android:name=".mealReminder"
+            android:exported="false"/>
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

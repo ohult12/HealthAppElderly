@@ -19,6 +19,7 @@ import com.google.firebase.ktx.Firebase;
 public class ElderView extends AppCompatActivity {
     TextView loggedInStr;
     Button btnLogout;
+    Button reminderBtn;
     FirebaseAuth mAuth;
     TextView elder;
     RadioGroup rgLanguage;
@@ -42,6 +43,7 @@ public class ElderView extends AppCompatActivity {
 
         String loginStr, email;
         btnLogout = findViewById(R.id.logoutButton);
+        reminderBtn = findViewById(R.id.reminderBtn);
         loggedInStr = findViewById(R.id.loggedInUser);
         elder = findViewById(R.id.header_text);
         rgLanguage = findViewById(R.id.radiog1);
@@ -62,6 +64,14 @@ public class ElderView extends AppCompatActivity {
             public void onClick(View view) {
                 mAuth.signOut();
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+        reminderBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), mealReminder.class);
                 startActivity(intent);
                 finish();
             }

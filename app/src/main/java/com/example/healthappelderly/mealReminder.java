@@ -7,6 +7,7 @@ import static android.content.ContentValues.TAG;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -26,6 +27,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
+import java.util.zip.Inflater;
 
 public class mealReminder extends AppCompatActivity {
     FirebaseDatabase firebaseDatabase;
@@ -38,7 +40,10 @@ public class mealReminder extends AppCompatActivity {
         super.onStart();
     }
 
-    public void onCreate() {
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.mealreminder_elderly);
+
         listView = findViewById(R.id.listview);
 
         getDataFromDatabase();
@@ -51,8 +56,9 @@ public class mealReminder extends AppCompatActivity {
     }
     //Database
     private void getDataFromDatabase() {
-        String uid = user.getUid();
-        databaseReference = FirebaseDatabase.getInstance().getReference(uid).child("Meals");
+
+        String email = user.getEmail();
+        databaseReference = FirebaseDatabase.getInstance().getReference("Elder");
         ArrayList<String> list = new ArrayList<>();
         ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.list_item, list);
         listView.setAdapter(adapter);
