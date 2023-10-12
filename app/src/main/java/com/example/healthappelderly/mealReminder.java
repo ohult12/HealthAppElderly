@@ -63,36 +63,62 @@ public class mealReminder extends AppCompatActivity {
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String currentDate = sdf.format(new Date());
+        SimpleDateFormat time = new SimpleDateFormat("HH:mm");
+        String currentTime = time.format(new Date());
 
-
-        setNextMeal(currentDate);
+        setNextMeal(currentDate, currentTime);
     }
 
-    private void setNextMeal(String cDate) {
+    private void setNextMeal(String cDate, String cTime) {
         String username = getLocalString(USERNAME_KEY);
         Log.d("user", username);
         Log.d("dateString", cDate);
-        Meal nextMeal = new Meal();
-        DatabaseReference currentElderRef = rootRef.child("Elder").child(username);
-        currentElderRef.child("Meals").child(cDate).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        Log.d("timeString", cTime);
+
+        DatabaseReference currentElderRef = rootRef.child("Elder").child(username).child("Meals").child(cDate);
+
+        currentElderRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if (!task.isSuccessful()) {
-                    Log.e("firebase", "Error getting data", task.getException());
-                } else {
-                    Log.d("firebase", String.valueOf(task.getResult().getValue()));
-                    Meal meal = task.getResult().child("lunch").getValue(Meal.class);
-                    if (meal != null) {
-                        tvMealType.setText(meal.getType().toString());
-                        tvMealTime.setText(meal.getTime_of_day());
-                        tvMealComment.setText(meal.getComment());
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    Meal nextMeal = null;
+                    Log.d("datasnapshot", dataSnapshot.getValue().toString());
+                    for (DataSnapshot mealSnapshot : dataSnapshot.getChildren()) {
+                        Log.d("datasnapshot_children", mealSnapshot.getValue().toString());
+                        Meal meal = mealSnapshot.getValue(Meal.class);
+                        if (meal != null) {
+                            String mealTime = meal.getTime_of_day();
+
+                            // Compare the time_of_day in the meal with the current time
+                            if (mealTime != null && mealTime.compareTo(cTime) > 0) {
+                                nextMeal = meal;
+                                break; // Exit the loop when the next meal is found
+                            }
+                        }
+                    }
+
+                    if (nextMeal != null) {
+                        tvMealType.setText(nextMeal.getType().toString());
+                        tvMealTime.setText(nextMeal.getTime_of_day());
+                        tvMealComment.setText(nextMeal.getComment());
+                        checkBtn.setActivated(true);
+                    } else {
+                        // Handle the case when no meal is found
+                        tvMealType.setText("No more Meals today!");
+                        tvMealTime.setText("");
+                        tvMealComment.setText("");
+                        checkBtn.setActivated(false);
                     }
                 }
-
             }
 
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Handle errors here
+            }
         });
     }
+
 
     private String getLocalString(String key) {
         SharedPreferences preferences = getSharedPreferences(SHAREDPREF_KEY, Context.MODE_PRIVATE);
