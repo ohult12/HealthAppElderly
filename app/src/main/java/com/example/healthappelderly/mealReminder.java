@@ -25,6 +25,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 
 import android.content.SharedPreferences;
@@ -84,6 +85,9 @@ public class mealReminder extends AppCompatActivity {
             public void onClick(View view) {
                 if(mealsExist) {
                     sendMealToHistory(currentDate, currentTime);
+                    tvMealType.setText("No more Meals today!");
+                    tvMealTime.setText("");
+                    tvMealComment.setText("");
                 } else {
                     tvMealType.setText("No more Meals today!");
                     tvMealTime.setText("");
@@ -126,14 +130,18 @@ public class mealReminder extends AppCompatActivity {
                     Log.d("datasnapshot", dataSnapshot.getValue().toString());
                     for (DataSnapshot mealSnapshot : dataSnapshot.getChildren()) {
                         Log.d("datasnapshot_children", mealSnapshot.getValue().toString());
+                        //Hämta Meal ur databas
                         Meal meal = mealSnapshot.getValue(Meal.class);
                         if (meal != null) {
                             String mealTime = meal.getTime_of_day();
 
                             // Compare the time_of_day in the meal with the current time
-                            if (mealTime != null && mealTime.compareTo(cTime) > 0) {
-                                //Meal won't show up if it's time has passed.
-                                //This needs to be changed to allow for late check-ins from user.
+                            if (mealTime != null /*&& mealTime.compareTo(cTime) > 0*/) {
+                                //Now the next meal is only showed if the user has pressed CHECK
+                                //mealTime.compareTo(cTime) does not update unless activity is reloaded (or database node of cDate)
+                                //Calculate time 45 minutes ahead of mealTime.
+                                setAlert(mealTime);
+
                                 nextMeal = meal;
                                 break; // Exit the loop when the next meal is found
                             }
@@ -142,7 +150,7 @@ public class mealReminder extends AppCompatActivity {
                     //Set meal info
                     if (nextMeal != null) {
 
-                        tvMealType.setText(nextMeal.getType().toString());
+                        tvMealType.setText(nextMeal.getType().toString().toUpperCase());
                         tvMealTime.setText(nextMeal.getTime_of_day());
                         tvMealComment.setText(nextMeal.getComment());
 
@@ -168,6 +176,19 @@ public class mealReminder extends AppCompatActivity {
                 // Handle errors here
             }
         });
+    }
+
+    private void setAlert(String mealTime) {
+        Calendar alertTime = Calendar.getInstance();
+        SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+        try {
+            Date dMealTime = timeFormat.parse(mealTime);
+            alertTime.setTime(dMealTime);
+            alertTime.add(Calendar.MINUTE, 45);
+
+        } catch (ParseException e){
+            e.printStackTrace();
+        }
     }
 
 

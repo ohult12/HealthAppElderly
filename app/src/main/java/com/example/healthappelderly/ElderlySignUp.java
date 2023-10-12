@@ -30,6 +30,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class ElderlySignUp extends AppCompatActivity {
     String USERNAME_KEY = "ElderApp_Username";
+    String EMAIL_KEY = "ElderApp_User_Email";
     EditText etFullName, etEmail, etPhone, etAddress, etAllergies, etUsername, etPin;
     Button btnSignUp;
     FirebaseAuth mAuth;
@@ -99,7 +100,9 @@ public class ElderlySignUp extends AppCompatActivity {
                                         });
 
                                         saveStringLocally(USERNAME_KEY, username);
-                                        changeActivity(MainActivity.class);
+                                        saveStringLocally(EMAIL_KEY, email);
+                                        //saveStringLocally()
+                                        changeActivity(FirstLogin.class);
 
                                     } else {
                                         // If sign in fails, display a message to the user.
