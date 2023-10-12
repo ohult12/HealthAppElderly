@@ -1,12 +1,12 @@
 package com.example.healthappelderly;
-
+import com.google.firebase.firestore.IgnoreExtraProperties;
 /*enum allergies {
     NUTS,
     GLUTEN,
     LACTOS
 }*/
 
-import com.google.firebase.firestore.IgnoreExtraProperties;
+
 
 enum mealType {
     breakfast,
@@ -14,7 +14,7 @@ enum mealType {
     dinner,
     snack
 }
-@IgnoreExtraProperties
+
 public class Meal {
     private mealType type;
     private String time_of_day;
