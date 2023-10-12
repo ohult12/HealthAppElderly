@@ -26,10 +26,23 @@
     </LinearLayout>
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="400dp"
         android:id="@+id/listview"
         android:layout_marginTop="75dp">
+        
     </ListView>
+
+    <Button
+        android:id="@+id/checkBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/listview"
+        android:textSize="30dp"
+        android:hint="Check"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/black">
+
+    </Button>
 
 
 </RelativeLayout>
