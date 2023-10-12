@@ -8,7 +8,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -43,6 +45,8 @@ public class mealReminder extends AppCompatActivity {
     String USERNAME_KEY = "ElderApp_Username";
     String SHAREDPREF_KEY = "EldercareApp";
     FirebaseAuth mAuth;
+    Boolean mealsExist;
+    String username;
 
     @Override
     public void onStart() {
@@ -60,24 +64,40 @@ public class mealReminder extends AppCompatActivity {
         tvMealTime = findViewById(R.id.tvMealTime);
         tvMealComment = findViewById(R.id.tvMealComment);
 
+        username = getLocalString(USERNAME_KEY);
+        Log.d("sharedpref user", username);
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String currentDate = sdf.format(new Date());
         SimpleDateFormat time = new SimpleDateFormat("HH:mm");
         String currentTime = time.format(new Date());
 
+        mealsExist = false;
         setNextMeal(currentDate, currentTime);
+        checkBtn.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                if(mealsExist) {
+                    sendMealToHistory(currentDate, currentTime);
+                }
+            }
+        });
+    }
+
+    private void sendMealToHistory(String cDate, String cTime) {
+        DatabaseReference currentElderRef = rootRef.child("Elder").child(username).child("Meals").child(cDate);
+
+
     }
 
     private void setNextMeal(String cDate, String cTime) {
-        String username = getLocalString(USERNAME_KEY);
-        Log.d("user", username);
         Log.d("dateString", cDate);
         Log.d("timeString", cTime);
 
         DatabaseReference currentElderRef = rootRef.child("Elder").child(username).child("Meals").child(cDate);
 
-        currentElderRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        currentElderRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
@@ -96,18 +116,25 @@ public class mealReminder extends AppCompatActivity {
                             }
                         }
                     }
-
+                    //Set meal info
                     if (nextMeal != null) {
+
                         tvMealType.setText(nextMeal.getType().toString());
                         tvMealTime.setText(nextMeal.getTime_of_day());
                         tvMealComment.setText(nextMeal.getComment());
-                        checkBtn.setActivated(true);
+
+                        checkBtn.setBackgroundTintList(null);
+                        mealsExist = true;
+
                     } else {
                         // Handle the case when no meal is found
                         tvMealType.setText("No more Meals today!");
                         tvMealTime.setText("");
                         tvMealComment.setText("");
-                        checkBtn.setActivated(false);
+                        mealsExist = false;
+                        int disabledColor = ContextCompat.getColor(mealReminder.this, R.color.gray);
+                        checkBtn.setBackgroundTintList(ColorStateList.valueOf(disabledColor));
+
                     }
                 }
             }
