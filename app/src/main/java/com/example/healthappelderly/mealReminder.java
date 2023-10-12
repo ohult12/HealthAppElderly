@@ -64,15 +64,19 @@ public class mealReminder extends AppCompatActivity {
         tvMealTime = findViewById(R.id.tvMealTime);
         tvMealComment = findViewById(R.id.tvMealComment);
 
+        //Get username from phone locally
         username = getLocalString(USERNAME_KEY);
         Log.d("sharedpref user", username);
 
+        //Get todays date and time
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String currentDate = sdf.format(new Date());
         SimpleDateFormat time = new SimpleDateFormat("HH:mm");
         String currentTime = time.format(new Date());
 
         mealsExist = false;
+
+        //call to show next meal
         setNextMeal(currentDate, currentTime);
         checkBtn.setOnClickListener(new View.OnClickListener(){
 
@@ -80,6 +84,10 @@ public class mealReminder extends AppCompatActivity {
             public void onClick(View view) {
                 if(mealsExist) {
                     sendMealToHistory(currentDate, currentTime);
+                } else {
+                    tvMealType.setText("No more Meals today!");
+                    tvMealTime.setText("");
+                    tvMealComment.setText("");
                 }
             }
         });
@@ -88,6 +96,18 @@ public class mealReminder extends AppCompatActivity {
     private void sendMealToHistory(String cDate, String cTime) {
         DatabaseReference currentElderRef = rootRef.child("Elder").child(username).child("Meals").child(cDate);
 
+        String comment, typeStr, time;
+        time = String.valueOf(tvMealTime.getText());
+        typeStr = String.valueOf(tvMealType.getText());
+        comment = String.valueOf(tvMealComment.getText());
+
+        boolean ate;
+        mealType type = convertStringToMeal(typeStr);
+
+        MealHistoryItem doneMeal = new MealHistoryItem(type, time, cDate, comment, cTime, true);
+
+        //REMOVES CHILD
+        currentElderRef.child(time).removeValue();
 
     }
 
@@ -100,6 +120,7 @@ public class mealReminder extends AppCompatActivity {
         currentElderRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.d("timeStringOnEvent", cTime);
                 if (dataSnapshot.exists()) {
                     Meal nextMeal = null;
                     Log.d("datasnapshot", dataSnapshot.getValue().toString());
@@ -111,6 +132,8 @@ public class mealReminder extends AppCompatActivity {
 
                             // Compare the time_of_day in the meal with the current time
                             if (mealTime != null && mealTime.compareTo(cTime) > 0) {
+                                //Meal won't show up if it's time has passed.
+                                //This needs to be changed to allow for late check-ins from user.
                                 nextMeal = meal;
                                 break; // Exit the loop when the next meal is found
                             }
@@ -123,7 +146,8 @@ public class mealReminder extends AppCompatActivity {
                         tvMealTime.setText(nextMeal.getTime_of_day());
                         tvMealComment.setText(nextMeal.getComment());
 
-                        checkBtn.setBackgroundTintList(null);
+                        int enabledColor = ContextCompat.getColor(mealReminder.this, R.color.blue);
+                        checkBtn.setBackgroundTintList(ColorStateList.valueOf(enabledColor));
                         mealsExist = true;
 
                     } else {
@@ -150,5 +174,12 @@ public class mealReminder extends AppCompatActivity {
     private String getLocalString(String key) {
         SharedPreferences preferences = getSharedPreferences(SHAREDPREF_KEY, Context.MODE_PRIVATE);
         return preferences.getString(key, null);
+    }
+    public static mealType convertStringToMeal(String mealString){
+        try {
+            return mealType.valueOf(mealString.toLowerCase());
+        } catch (IllegalArgumentException e){
+            throw new IllegalArgumentException("Invalid meal string: " + mealString);
+        }
     }
 }
