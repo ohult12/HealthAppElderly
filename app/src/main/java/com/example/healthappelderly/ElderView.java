@@ -71,7 +71,7 @@ public class ElderView extends AppCompatActivity {
         reminderBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), mealReminder.class);
+                Intent intent = new Intent(getApplicationContext(), mealViewer.class);
                 startActivity(intent);
                 finish();
             }

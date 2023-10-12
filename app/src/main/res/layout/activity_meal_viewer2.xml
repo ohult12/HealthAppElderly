@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    >
+
+    <TextView
+        android:id="@+id/tvDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="2023-10-11"
+        android:textSize="50sp"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:textStyle="bold"
+        />
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_below="@+id/tvDate"
+        android:background="@color/black"
+        />
+
+    <TextView
+        android:id="@+id/tvNextMeal"
+        android:layout_below="@+id/tvDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Nästa måltid:"
+        android:textSize="30sp"
+        />
+
+    <TextView
+        android:id="@+id/tvNextMealTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tvNextMeal"
+        android:layout_toRightOf="@+id/tvNextMeal"
+        android:text="08:30"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        android:layout_marginStart="20dp"
+        />
+
+    <TextView
+        android:id="@+id/tvMealInfo"
+        android:layout_below="@+id/tvNextMeal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Filmjölk och kaffe"
+        android:textSize="20dp"
+        />
+
+    <Button
+        android:id="@+id/btnEaten"
+        android:layout_below="@+id/tvMealInfo"
+        android:layout_width="175dp"
+        android:layout_height="150dp"
+        android:backgroundTint="@color/green"
+        android:layout_centerHorizontal="true"
+        android:text="I have eaten breakfast"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginTop="100dp"
+        android:drawableLeft="@drawable/done_fill0_wght400_grad0_opsz24"
+        android:drawablePadding="40dp"
+        android:drawableTint="@color/white"
+        />
+
+</RelativeLayout>
