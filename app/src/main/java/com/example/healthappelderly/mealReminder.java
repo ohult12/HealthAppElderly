@@ -7,6 +7,7 @@ import com.google.firebase.auth.FirebaseUser;
 import androidx.annotation.NonNull;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.content.Context;
@@ -50,14 +51,16 @@ public class mealReminder extends AppCompatActivity {
 
         listView = findViewById(R.id.listview);
         checkBtn = findViewById(R.id.checkBtn);
-        setMeal("Breakfast");
+        //getTime();
+        setMeal("breakfast");
+        //getDataFromDatabase();
 
         checkBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 getDataFromDatabase();
-                //change_meal(getTime(), mealTime);
-                String change_meal = change_meal_view(meal);
+                //change_meal(getTime(), getMeal());
+                String change_meal = change_meal_view(getMeal());//getTime(), getMeal());
                 setMeal(change_meal);
             }
         });
@@ -73,11 +76,9 @@ public class mealReminder extends AppCompatActivity {
         String date = "2023-10-11"; //getDateTime();
         String meals = getMeal();
         String time = getTime();
-        Toast.makeText(mealReminder.this, "Tid: " + time, Toast.LENGTH_SHORT).show();
-
 
         String email = user.getEmail();
-        databaseReference = FirebaseDatabase.getInstance().getReference("Elder").child(username).child("Meals").child(date).child(meals);
+        databaseReference = FirebaseDatabase.getInstance().getReference("Elder").child(username).child("Meals").child(date).child(getMeal());
         ArrayList<String> list = new ArrayList<>();
         ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.list_item, list);
         listView.setAdapter(adapter);
@@ -87,9 +88,12 @@ public class mealReminder extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 list.clear();
-                list.add(snapshot.getKey().toString());
+                //list.add(snapshot.getKey().toString());
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     list.add(dataSnapshot.getValue().toString());
+                    //setMeal(String.valueOf(snapshot.child("type").getValue(String.class)));
+                    mealTime = String.valueOf(snapshot.child("time_of_day").getValue(String.class));
+                    setMealTime(mealTime);
                 }
                 adapter.notifyDataSetChanged();
             }
@@ -106,31 +110,32 @@ public class mealReminder extends AppCompatActivity {
     }
 
     private String getTime() {
-        Date d=new Date();
-        SimpleDateFormat sdf=new SimpleDateFormat("hh:mm a");
-        String currentDateTimeString = sdf.format(d);
+        SimpleDateFormat sdf=new SimpleDateFormat("HH mm");
+        String currentDateTimeString = sdf.format(new Date());
+        Toast.makeText(mealReminder.this, "Timeeesss: " + currentDateTimeString, Toast.LENGTH_SHORT).show();
         return currentDateTimeString;
     }
 
-    private void change_meal(String time, String mealtime) {
-        if(time.compareTo(mealtime) > mealtime.compareTo(time)) {
-            change_meal_view(getMeal());
+    /*private String change_meal(String time, String meal) {
+        if(time.compareTo(getMealTime()) > 0) {
+            Toast.makeText(mealReminder.this, "Time meal: " + getMealTime(), Toast.LENGTH_SHORT).show();
+            meal = change_meal_view(getMeal());
         } else {
             Toast.makeText(mealReminder.this, "Time for this meal is not over yet", Toast.LENGTH_SHORT).show();
-
         }
-    }
+        return meal;
+    }*/
 
     private String change_meal_view(String meal) {
         switch(meal) {
-            case "Breakfast":
-                meal = "Small meal";
+            case "breakfast":
+                meal = "snack";
                 break;
-            case "Small meal":
-                meal = "Lunch";
+            case "snack":
+                meal = "lunch";
                 break;
-            case "Lunch":
-                meal = "Dinner";
+            case "lunch":
+                meal = "dinner";
                 break;
             default:
                 meal = "No more meals today";
@@ -144,5 +149,13 @@ public class mealReminder extends AppCompatActivity {
     }
     public void setMeal(String meal) {
         this.meal = meal;
+    }
+
+    public String getMealTime() {
+        return mealTime;
+    }
+
+    public void setMealTime(String mealTime) {
+        this.mealTime = mealTime;
     }
 }
