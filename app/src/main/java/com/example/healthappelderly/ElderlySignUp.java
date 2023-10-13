@@ -35,7 +35,6 @@ public class ElderlySignUp extends AppCompatActivity {
     Button btnSignUp;
     FirebaseAuth mAuth;
     DatabaseReference dbRef;
-    DbLib dbLib;
     FirebaseUser user;
 
     @Override

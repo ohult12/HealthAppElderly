@@ -59,6 +59,10 @@ public class ElderView extends AppCompatActivity {
         loginStr = loginStr + ": " + email;
         loggedInStr.setText(loginStr);
 
+
+
+
+
         btnLogout.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {

@@ -10,6 +10,7 @@ import com.google.firebase.auth.FirebaseUser;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -66,8 +67,12 @@ public class mealReminder extends AppCompatActivity {
         tvMealComment = findViewById(R.id.tvMealComment);
 
         //Get username from phone locally
+
         username = getLocalString(USERNAME_KEY);
-        Log.d("sharedpref user", username);
+        if(username == null){
+            reAuthUser();
+        }
+
 
         //Get todays date and time
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -95,6 +100,17 @@ public class mealReminder extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void reAuthUser() {
+        FirebaseUser user = mAuth.getCurrentUser();
+        username = user.getDisplayName();
+        Log.d("username from auth", username);
+        if(username == null) {
+            mAuth.signOut();
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            finish();
+        }
     }
 
     private void sendMealToHistory(String cDate, String cTime) {
