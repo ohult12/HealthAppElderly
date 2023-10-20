@@ -34,4 +34,7 @@
     <string name="meal_reminder">Meal Reminder</string>
     <string name="example_comment">example comment</string>
     <string name="no_more_meals_today">No more Meals today!</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="do_you_want_to_log_out">Do you want to log out?</string>
 </resources>
