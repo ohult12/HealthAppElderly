@@ -11,25 +11,27 @@
 
     <TextView
         android:id="@+id/header"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:text="@string/log_in_first"
-        android:textSize="30dp"
-        android:layout_marginBottom="100dp" />
+        android:textSize="30sp"
+        android:layout_marginBottom="100dp"
+        />
 
     <TextView
         android:id="@+id/tvPersonalNbr"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/email"
-        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
         android:textSize="20sp"
-        android:layout_below="@+id/header" />
+        android:layout_below="@+id/header"
+        android:layout_alignStart="@+id/etEmail"/>
 
     <EditText
         android:id="@+id/etEmail"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/blue"
         android:hint="@string/example_mail"
@@ -40,23 +42,26 @@
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         android:drawablePadding="20dp"
-        android:drawableLeft="@drawable/baseline_person_outline_24"
+        android:drawableStart="@drawable/baseline_person_outline_24"
         android:inputType="textEmailAddress"
         android:layout_below="@id/tvPersonalNbr"
-        />
+        android:layout_centerHorizontal="true"
+        android:minWidth="480dp"
+        android:autofillHints="emailAddress"/>
 
     <TextView
         android:id="@+id/tvEmail"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/code"
-        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
         android:textSize="20sp"
-        android:layout_below="@+id/etEmail"/>
+        android:layout_below="@+id/etEmail"
+        android:layout_alignStart="@+id/etPIN" />
 
     <EditText
         android:id="@+id/etPIN"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/blue"
         android:hint="@string/pin_hint_x"
@@ -67,11 +72,13 @@
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         android:drawablePadding="20dp"
-        android:drawableLeft="@drawable/baseline_key_24"
+        android:drawableStart="@drawable/baseline_key_24"
         android:inputType="numberPassword"
         android:layout_below="@id/tvEmail"
         android:maxLength="4"
-        />
+        android:layout_centerHorizontal="true"
+        android:minWidth="480dp"
+        android:autofillHints="password"/>
 
 
     <Button
