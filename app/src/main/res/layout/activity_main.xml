@@ -1,131 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
-
-    <EditText
-        android:id="@+id/pin"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:ems="10"
-        android:hint="@string/input_4_digit_pin"
-        android:inputType="numberPassword"
-        android:maxLength="4"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/infoText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/enter_4_digit_pin"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.485"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.357" />
-
-    <TextView
-        android:id="@+id/logInAs"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Log in as "
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.479"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.391" />
-
-    <TextView
-        android:id="@+id/welcomeText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/welcome"
-        android:textSize="36sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.3" />
-
-    <Button
-        android:id="@+id/loginButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/login"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.708"
-        android:backgroundTint="@color/blue"
-        android:textColor="@color/white"/>
-
-    <Button
-        android:id="@+id/firstTimeLoginBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/login_elderly"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.808"
-        android:backgroundTint="@color/blue"
-        android:textColor="@color/white"/>
-
-    <RadioGroup
-        android:id="@+id/radiog"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.878">
+        tools:context=".MainActivity">
 
-        <RadioButton
-            android:id="@+id/rb_swedish"
-            android:layout_width="0dp"
+        <EditText
+            android:id="@+id/pin"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:ems="10"
+            android:hint="@string/input_4_digit_pin"
+            android:inputType="numberPassword"
+            android:maxLength="4"
+            android:layout_below="@+id/logInAs"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:autofillHints="password" />
+
+        <TextView
+            android:id="@+id/infoText"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="60dp"
-            android:layout_weight="1"
-            android:padding="8dp"
-            android:text="@string/swedish" />
+            android:text="@string/enter_4_digit_pin"
+            android:textSize="18sp"
+            android:layout_below="@+id/welcomeText"
+            android:layout_centerHorizontal="true"/>
 
-        <RadioButton
-            android:id="@+id/rb_english"
-            android:layout_width="0dp"
+        <TextView
+            android:id="@+id/logInAs"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:text="Log in as "
+            android:textSize="18sp"
+            android:layout_below="@+id/infoText"
+            android:layout_centerHorizontal="true"/>
 
-            android:padding="8dp"
-            android:text="@string/english" />
+        <TextView
+            android:id="@+id/welcomeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/welcome"
+            android:textSize="36sp"
+            android:layout_marginTop="175dp"
+            android:layout_centerHorizontal="true"/>
 
-    </RadioGroup>
+        <Button
+            android:id="@+id/loginButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login"
+            android:layout_below="@+id/pin"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:backgroundTint="@color/blue"
+            android:textColor="@color/white"/>
 
-    <Button
-        android:id="@+id/signUpNewElder"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sign up new Elder"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.948"
-        android:backgroundTint="@color/blue"
-        android:textColor="@color/white"/>
+        <Button
+            android:id="@+id/firstTimeLoginBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login_elderly"
+            android:layout_below="@+id/loginButton"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/blue"
+            android:textColor="@color/white"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <RadioGroup
+            android:id="@+id/radiog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/firstTimeLoginBtn"
+            android:layout_centerInParent="true"
+            android:minWidth="411dp">
+
+            <RadioButton
+                android:id="@+id/rb_swedish"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="60dp"
+                android:layout_weight="1"
+                android:padding="8dp"
+                android:text="@string/swedish" />
+
+            <RadioButton
+                android:id="@+id/rb_english"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+
+                android:padding="8dp"
+                android:text="@string/english" />
+
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/signUpNewElder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign up new Elder"
+            android:layout_below="@id/radiog"
+            android:layout_centerHorizontal="true"
+            android:backgroundTint="@color/blue"
+            android:textColor="@color/white"/>
+
+    </RelativeLayout>
+</ScrollView>
