@@ -66,7 +66,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.708" />
+        app:layout_constraintVertical_bias="0.708"
+        android:backgroundTint="@color/blue"
+        android:textColor="@color/white"/>
 
     <Button
         android:id="@+id/firstTimeLoginBtn"
@@ -77,7 +79,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.808"  />
+        app:layout_constraintVertical_bias="0.808"
+        android:backgroundTint="@color/blue"
+        android:textColor="@color/white"/>
 
     <RadioGroup
         android:id="@+id/radiog"
@@ -120,6 +124,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.948" />
+        app:layout_constraintVertical_bias="0.948"
+        android:backgroundTint="@color/blue"
+        android:textColor="@color/white"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
