@@ -32,4 +32,7 @@
     <string name="meal_reminder">Måltids påminnelse</string>
     <string name="example_comment">exempel kommentar</string>
     <string name="no_more_meals_today">Inga fler måltider idag!</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Avbryt</string>
+    <string name="do_you_want_to_log_out">Vill du logga ut?</string>
 </resources>

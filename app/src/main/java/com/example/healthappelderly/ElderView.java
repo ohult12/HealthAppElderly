@@ -1,6 +1,8 @@
 package com.example.healthappelderly;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
@@ -117,10 +119,21 @@ public class ElderView extends AppCompatActivity {
         btnLogout.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                mAuth.signOut();
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
-                finish();
+                AlertDialog.Builder builder = new AlertDialog.Builder(ElderView.this);
+                builder.setMessage(R.string.do_you_want_to_log_out);
+                builder.setTitle(R.string.log_out);
+                builder.setCancelable(true);
+                builder.setPositiveButton(R.string.ok, (DialogInterface.OnClickListener) (dialog, which) -> {
+                    mAuth.signOut();
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                });
+                builder.setNegativeButton(R.string.cancel, (DialogInterface.OnClickListener) (dialog, which) -> {
+                    dialog.cancel();
+                });
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
             }
         });
         rgLanguage.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
