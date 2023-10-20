@@ -39,7 +39,6 @@ public class ElderView extends AppCompatActivity {
     String SHAREDPREF_KEY = "EldercareApp";
     Boolean mealsExist;
     String username;
-    TextView elder;
     RadioGroup rgLanguage;
     RadioButton rbEnglish, rbSwedish;
     @Override
@@ -81,15 +80,12 @@ public class ElderView extends AppCompatActivity {
         loginStr = loginStr + ": " + email;
         loggedInStr.setText(loginStr);
 
-
-
         //Get username from phone locally
-
         username = getLocalString(USERNAME_KEY);
+        Log.d("SharedPrefs:", username);
         if(username == null){
             reAuthUser();
         }
-
 
         //Get todays date and time
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -107,20 +103,16 @@ public class ElderView extends AppCompatActivity {
             public void onClick(View view) {
                 if(mealsExist) {
                     sendMealToHistory(currentDate, currentTime);
-                    tvMealType.setText("No more Meals today!");
+                    tvMealType.setText(R.string.no_more_meals_today);
                     tvMealTime.setText("");
                     tvMealComment.setText("");
                 } else {
-                    tvMealType.setText("No more Meals today!");
+                    tvMealType.setText(R.string.no_more_meals_today);
                     tvMealTime.setText("");
                     tvMealComment.setText("");
                 }
             }
         });
-
-
-
-
 
         btnLogout.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -190,11 +182,16 @@ public class ElderView extends AppCompatActivity {
         typeStr = String.valueOf(tvMealType.getText());
         comment = String.valueOf(tvMealComment.getText());
 
+        SimpleDateFormat sdfTime = new SimpleDateFormat("HH:mm");
+        String currentTime = sdfTime.format(new Date());
+
         boolean ate;
         mealType type = convertStringToMeal(typeStr);
 
-        MealHistoryItem doneMeal = new MealHistoryItem(type, time, cDate, comment, cTime, true);
-
+        MealHistoryItem doneMeal = new MealHistoryItem(type, time, cDate, comment, currentTime, true);
+        DatabaseReference mealHistoryRef = FirebaseDatabase.getInstance().getReference().child("Elder").child(username).child("meal_history");
+        String key = mealHistoryRef.push().getKey();
+        mealHistoryRef.child(key).setValue(doneMeal);
         //REMOVES CHILD
         currentElderRef.child(time).removeValue();
 

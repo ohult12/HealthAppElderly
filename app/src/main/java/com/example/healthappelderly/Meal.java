@@ -1,5 +1,4 @@
 package com.example.healthappelderly;
-import com.google.firebase.firestore.IgnoreExtraProperties;
 /*enum allergies {
     NUTS,
     GLUTEN,
