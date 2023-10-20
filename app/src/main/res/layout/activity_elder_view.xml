@@ -26,19 +26,20 @@
         android:textColor="@color/white"
         android:backgroundTint="@color/red" />
 
-
     <RadioGroup
         android:id="@+id/radiog1"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/header"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_centerInParent="true"
+        android:minWidth="411dp">
 
         <RadioButton
             android:id="@+id/rb_swedish1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="60dp"
+            android:layout_marginStart="60dp"
             android:layout_weight="1"
             android:padding="8dp"
             android:text="@string/swedish" />
@@ -70,7 +71,7 @@
             android:text="@string/meal_reminder"
             android:layout_gravity="center"
             android:textColor="@color/white"
-            android:textSize="30dp"
+            android:textSize="30sp"
             android:textStyle="bold" />
 
     </LinearLayout>
@@ -82,44 +83,46 @@
         android:padding="20dp">
         <TextView
             android:id="@+id/tvMealType"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/no_meal_planned"
-            android:textSize="40dp"
+            android:textSize="40sp"
             android:textStyle="bold"
-            android:gravity="center"
+            android:layout_centerHorizontal="true"
             />
 
         <TextView
             android:id="@+id/tvMealTime"
             android:layout_below="@+id/tvMealType"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="30dp"
             android:text=""
-
+            android:layout_alignStart="@+id/tvMealType"
             />
         <TextView
             android:id="@+id/tvMealComment"
             android:layout_below="@+id/tvMealTime"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20dp"
             android:text=""
+            android:layout_alignStart="@+id/tvMealType"
 
             />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/checkBtn"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="100dp"
             android:layout_below="@id/tvMealComment"
-            android:textSize="30dp"
+            android:textSize="30sp"
             android:text="@string/check"
             android:backgroundTint="@color/blue"
             android:layout_centerHorizontal="true"
             android:textColor="@color/white"
-            android:layout_marginTop="50dp">
+            android:layout_marginTop="50dp"
+            android:minWidth="292dp">
 
         </androidx.appcompat.widget.AppCompatButton>
     </RelativeLayout>
