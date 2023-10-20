@@ -29,5 +29,9 @@
     <string name="_4_digit_pin">4 digit PIN</string>
     <string name="sign_up_new_elder">Sign up new Elder</string>
     <string name="username">Username</string>
+    <string name="no_meal_planned">No meal planned</string>
+    <string name="check">Check</string>
     <string name="meal_reminder">Meal Reminder</string>
+    <string name="example_comment">example comment</string>
+    <string name="no_more_meals_today">No more Meals today!</string>
 </resources>
