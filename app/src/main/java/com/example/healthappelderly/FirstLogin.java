@@ -20,6 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class FirstLogin extends AppCompatActivity {
     String EMAIL_KEY = "ElderApp_User_Email";
+    String USERNAME_KEY = "ElderApp_Username";
     EditText etEmail, etPIN;
     Button sendBtn;
     FirebaseAuth mAuth;
@@ -48,6 +49,7 @@ public class FirstLogin extends AppCompatActivity {
 
                         if (task.isSuccessful()) {
                             saveStringLocally(EMAIL_KEY, email);
+                            saveStringLocally(USERNAME_KEY, mAuth.getCurrentUser().getDisplayName());
 
                             Toast.makeText(FirstLogin.this, "Login Successful", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getApplicationContext(), ElderView.class));
