@@ -27,4 +27,9 @@
     <string name="_4_digit_pin">4-siffrig kod</string>
     <string name="sign_up_new_elder">Registrera ny Äldre</string>
     <string name="username">Användarnamn</string>
+    <string name="no_meal_planned">Ingen måltid planerad</string>
+    <string name="check">Kolla upp</string>
+    <string name="meal_reminder">Måltids påminnelse</string>
+    <string name="example_comment">exempel kommentar</string>
+    <string name="no_more_meals_today">Inga fler måltider idag!</string>
 </resources>
