@@ -1,11 +1,16 @@
 package com.example.healthappelderly;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -54,6 +59,10 @@ public class MainActivity extends AppCompatActivity {
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        requestNotificationPermissions();
+        Intent intent1 = new Intent(this, ForegroundService.class);
+        startService(intent1);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -152,6 +161,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
     }
     private String getLocalString(String key) {
         SharedPreferences preferences = getSharedPreferences("EldercareApp", Context.MODE_PRIVATE);
@@ -178,5 +188,33 @@ public class MainActivity extends AppCompatActivity {
     private String getLocale() {
         SharedPreferences preferences = getSharedPreferences("Languages", Context.MODE_PRIVATE);
         return preferences.getString(LocaleHelper.LANG_PREF, "NA");
+    }
+
+    //NOTIFICATIONPART
+    private void requestNotificationPermissions() {
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_DENIED)
+        {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, android.Manifest.permission.POST_NOTIFICATIONS)) {
+                new AlertDialog.Builder(this)
+                        .setIcon(R.drawable.baseline_fastfood_24)
+                        .setTitle(R.string.permission_request)
+                        .setMessage(R.string.notif_post_perm)
+                        .setPositiveButton(R.string.perm_accept, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                ActivityCompat.requestPermissions(MainActivity.this, new String[] {android.Manifest.permission.POST_NOTIFICATIONS}, AppNotificationManager.NOTIFICATION_POST_CODE);
+                            }
+                        })
+                        .setNegativeButton(R.string.perm_deny, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .create().show();
+            } else {
+                ActivityCompat.requestPermissions(this, new String[] {android.Manifest.permission.POST_NOTIFICATIONS}, AppNotificationManager.NOTIFICATION_POST_CODE);
+            }
+        }
     }
 }

@@ -206,7 +206,7 @@ public class ElderView extends AppCompatActivity {
         String key = mealHistoryRef.push().getKey();
         mealHistoryRef.child(key).setValue(doneMeal);
         //REMOVES CHILD
-        currentElderRef.child(time).removeValue();
+        currentElderRef.child(time).setValue(null);
 
     }
 

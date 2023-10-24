@@ -35,4 +35,12 @@
     <string name="ok">OK</string>
     <string name="cancel">Avbryt</string>
     <string name="do_you_want_to_log_out">Vill du logga ut?</string>
+
+    <!-- Notification Stuff-->
+    <string name="permission_request">Appen kräver behörigheter</string>
+    <string name="notif_post_perm">För att kunna visa dig viktig information utanför appen.</string>
+    <string name="perm_accept">Tillåt!</string>
+    <string name="perm_deny">Neka!</string>
+
+    <string name="time_to_eat">Dags att äta</string>
 </resources>
