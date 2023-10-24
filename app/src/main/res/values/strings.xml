@@ -37,4 +37,12 @@
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
     <string name="do_you_want_to_log_out">Do you want to log out?</string>
+
+    <!-- Notification Stuff-->
+    <string name="permission_request">Permission(s) requried</string>
+    <string name="notif_post_perm">To be able to show you important information outside of the app.</string>
+    <string name="perm_accept">Accept!</string>
+    <string name="perm_deny">Deny!</string>
+
+    <string name="time_to_eat">Time to eat</string>
 </resources>
