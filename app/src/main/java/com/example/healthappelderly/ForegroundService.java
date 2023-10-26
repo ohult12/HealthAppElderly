@@ -52,8 +52,8 @@ public class ForegroundService extends Service {
         notif_manager = new AppNotificationManager(this);
 
         Notification notification = new NotificationCompat.Builder(this, App.channel_medium_id)
-                .setContentTitle("FOREGROUND_SERVICE")
-                .setContentText("Service is running...")
+                .setContentTitle(getString(R.string.foreground_service))
+                .setContentText(getString(R.string.service_is_running))
                 .setSmallIcon(R.drawable.baseline_fastfood_24)
                 .setContentIntent(pendingIntent).build();
 

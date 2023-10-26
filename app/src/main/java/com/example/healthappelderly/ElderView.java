@@ -141,7 +141,7 @@ public class ElderView extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 if(i == R.id.rb_english1) {
                     LocaleHelper.setLocale(ElderView.this,"en");
-                    saveLocale("en");
+                    LocaleHelper.saveLocale(ElderView.this,"en");
                     rbEnglish.setChecked(true);
                     loggedInStr.setText(R.string.logged_in_as);
                     String mailStr = String.valueOf(loggedInStr.getText());
@@ -155,7 +155,7 @@ public class ElderView extends AppCompatActivity {
 
                 } else if (i == R.id.rb_swedish1) {
                     LocaleHelper.setLocale(ElderView.this, "sv");
-                    saveLocale("sv");
+                    LocaleHelper.saveLocale(ElderView.this, "sv");
                     rbSwedish.setChecked(true);
                     loggedInStr.setText(R.string.logged_in_as);
                     String mailStr = String.valueOf(loggedInStr.getText());
@@ -169,12 +169,6 @@ public class ElderView extends AppCompatActivity {
                 }
             }
         });
-    }
-    private void saveLocale(String lang) {
-        SharedPreferences preferences = getSharedPreferences("Languages", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putString(LocaleHelper.LANG_PREF, lang);
-        editor.apply();
     }
     private void reAuthUser() {
         FirebaseUser user = mAuth.getCurrentUser();

@@ -45,4 +45,17 @@
     <string name="perm_deny">Deny!</string>
 
     <string name="time_to_eat">Time to eat</string>
+    <string name="log_in_as">Log in as</string>
+    <string name="toast_username_already_exists">Username already exists, choose another one</string>
+    <string name="toast_new_elder_registered">New Elder Registered!</string>
+    <string name="toast_enter_address">Enter address</string>
+    <string name="toast_enter_username">Enter username</string>
+    <string name="toast_enter_phone_number">Enter phone number</string>
+    <string name="toast_enter_name">Enter name</string>
+    <string name="toast_enter_pin_code">Enter PIN-code</string>
+    <string name="toast_enter_email">Enter Email</string>
+    <string name="toast_login_successful">Login Successful</string>
+    <string name="toast_authentication_failed">Authentication failed.</string>
+    <string name="foreground_service">FOREGROUND_SERVICE</string>
+    <string name="service_is_running">Service is running...</string>
 </resources>
