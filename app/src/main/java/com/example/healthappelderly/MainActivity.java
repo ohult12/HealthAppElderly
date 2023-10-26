@@ -119,11 +119,11 @@ public class MainActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                         if (task.isSuccessful()) {
-                            Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, R.string.toast_login_successful, Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getApplicationContext(), ElderView.class));
                             finish();
                         } else {
-                            Toast.makeText(MainActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, R.string.toast_authentication_failed, Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -190,10 +190,10 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean isFormCorrect(String personalNbr, String pin) {
         if (TextUtils.isEmpty(personalNbr)){
-            Toast.makeText(MainActivity.this, "Email not correct, Log in new Elderly", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, R.string.toast_email_not_correct, Toast.LENGTH_SHORT).show();
             return false;
         } else if (TextUtils.isEmpty(pin)){
-            Toast.makeText(MainActivity.this, "Enter Password", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, R.string.toast_enter_pin_code, Toast.LENGTH_SHORT).show();
             return false;
         } else {
             return true;

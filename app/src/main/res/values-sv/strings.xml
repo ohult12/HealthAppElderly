@@ -56,4 +56,5 @@
     <string name="toast_authentication_failed">Autentisering misslyckad.</string>
     <string name="foreground_service">FÖRGRUNDSTJÄNST</string>
     <string name="service_is_running">Tjänst körs…</string>
+    <string name="toast_email_not_correct">Email ej korrekt, Logga in ny Äldre</string>
 </resources>

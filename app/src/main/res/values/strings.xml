@@ -58,4 +58,5 @@
     <string name="toast_authentication_failed">Authentication failed.</string>
     <string name="foreground_service">FOREGROUND_SERVICE</string>
     <string name="service_is_running">Service is running...</string>
+    <string name="toast_email_not_correct">Email not correct, Log in new Elderly</string>
 </resources>
