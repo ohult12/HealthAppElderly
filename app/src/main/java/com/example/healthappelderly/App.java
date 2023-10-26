@@ -14,6 +14,8 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         createNotificationChannels();
+        LocaleHelper.setLocale(this, LocaleHelper.getLocale(this));
+
     }
 
     private void createNotificationChannels(){
