@@ -43,4 +43,5 @@
     <string name="perm_deny">Neka!</string>
 
     <string name="time_to_eat">Dags att äta</string>
+    <string name="log_in_as">Logga in som</string>
 </resources>

@@ -45,4 +45,5 @@
     <string name="perm_deny">Deny!</string>
 
     <string name="time_to_eat">Time to eat</string>
+    <string name="log_in_as">Log in as</string>
 </resources>

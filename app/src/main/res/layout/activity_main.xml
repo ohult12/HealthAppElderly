@@ -35,7 +35,7 @@
             android:id="@+id/logInAs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Log in as "
+            android:text="@string/log_in_as"
             android:textSize="18sp"
             android:layout_below="@+id/infoText"
             android:layout_centerHorizontal="true"/>
@@ -104,7 +104,7 @@
             android:id="@+id/signUpNewElder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sign up new Elder"
+            android:text="@string/sign_up_new_elder"
             android:layout_below="@id/radiog"
             android:layout_centerHorizontal="true"
             android:backgroundTint="@color/blue"
