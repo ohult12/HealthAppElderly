@@ -77,7 +77,7 @@ public class ElderlySignUp extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if(snapshot.hasChild(username)){
-                            Toast.makeText(ElderlySignUp.this, "Username already exists, choose another one", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ElderlySignUp.this, R.string.toast_username_already_exists, Toast.LENGTH_SHORT).show();
 
                         } else {
                             mAuth.createUserWithEmailAndPassword(email, pin).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -137,22 +137,22 @@ public class ElderlySignUp extends AppCompatActivity {
 
     private boolean isFormCorrect(String name, String phone, String email, String address, String username, String PIN){
         if (TextUtils.isEmpty(email)) {
-            Toast.makeText(ElderlySignUp.this, "Enter Email", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ElderlySignUp.this, R.string.toast_enter_email, Toast.LENGTH_SHORT).show();
             return false;
         }else if (TextUtils.isEmpty(PIN)) {
-            Toast.makeText(ElderlySignUp.this, "Enter PIN-code", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ElderlySignUp.this, R.string.toast_enter_pin_code, Toast.LENGTH_SHORT).show();
             return false;
         }else if (TextUtils.isEmpty(name)){
-            Toast.makeText(ElderlySignUp.this, "Enter name", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ElderlySignUp.this, R.string.toast_enter_name, Toast.LENGTH_SHORT).show();
             return false;
         }else if (TextUtils.isEmpty(phone)) {
-            Toast.makeText(ElderlySignUp.this, "Enter phone number", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ElderlySignUp.this, R.string.toast_enter_phone_number, Toast.LENGTH_SHORT).show();
             return false;
         }else if (TextUtils.isEmpty(username)) {
-            Toast.makeText(ElderlySignUp.this, "Enter phone number", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ElderlySignUp.this, R.string.toast_enter_username, Toast.LENGTH_SHORT).show();
             return false;
         }else if (TextUtils.isEmpty(address)){
-            Toast.makeText(ElderlySignUp.this, "Enter address", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ElderlySignUp.this, R.string.toast_enter_address, Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
@@ -173,7 +173,7 @@ public class ElderlySignUp extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 //Databas
                 dbRef.child("Elder").child(username).setValue(newElder);
-                Toast.makeText(ElderlySignUp.this, "New Elder Registered!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ElderlySignUp.this, R.string.toast_new_elder_registered, Toast.LENGTH_SHORT).show();
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {

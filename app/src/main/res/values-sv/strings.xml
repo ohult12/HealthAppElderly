@@ -4,15 +4,15 @@
     <string name="telefonnummer">Skriv in telefonnummer</string>
     <string name="send_verification_code">Skicka Verifieringskod</string>
     <string name="sign_up">REGISTRERA</string>
-    <string name="authenticate_elder">Autentisera Gamling</string>
+    <string name="authenticate_elder">Autentisera Äldre</string>
     <string name="swedish">Svenska</string>
     <string name="english">English</string>
-    <string name="login_elderly">Logga in ny Gamling</string>
+    <string name="login_elderly">Logga in ny Äldre</string>
     <string name="login">LOGGA IN</string>
     <string name="welcome">Välkommen!</string>
     <string name="enter_4_digit_pin">Skriv in din 4-siffriga PIN under för att logga in!</string>
     <string name="input_4_digit_pin">Skriv 4-siffrig PIN</string>
-    <string name="elder_view">Gamling vy</string>
+    <string name="elder_view">Äldre vy</string>
     <string name="logged_in_as">Inloggad som</string>
     <string name="log_out">Logga ut</string>
     <string name="log_in_first">Logga in för första gången</string>
@@ -44,4 +44,16 @@
 
     <string name="time_to_eat">Dags att äta</string>
     <string name="log_in_as">Logga in som</string>
+    <string name="toast_username_already_exists">Användar namn existerar redan, välj annat</string>
+    <string name="toast_new_elder_registered">Ny äldre Registrerad!</string>
+    <string name="toast_enter_address">Skriv adress</string>
+    <string name="toast_enter_username">Skriv användarnamn</string>
+    <string name="toast_enter_phone_number">Skriv telefonnummer</string>
+    <string name="toast_enter_name">Skriv namn</string>
+    <string name="toast_enter_pin_code">Skriv PIN-kod</string>
+    <string name="toast_enter_email">Skriv Email</string>
+    <string name="toast_login_successful">Inloggning lyckades</string>
+    <string name="toast_authentication_failed">Autentisering misslyckad.</string>
+    <string name="foreground_service">FÖRGRUNDSTJÄNST</string>
+    <string name="service_is_running">Tjänst körs…</string>
 </resources>

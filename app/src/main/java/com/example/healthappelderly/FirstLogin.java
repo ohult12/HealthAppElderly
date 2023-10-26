@@ -51,11 +51,11 @@ public class FirstLogin extends AppCompatActivity {
                             saveStringLocally(EMAIL_KEY, email);
                             saveStringLocally(USERNAME_KEY, mAuth.getCurrentUser().getDisplayName());
 
-                            Toast.makeText(FirstLogin.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(FirstLogin.this, R.string.toast_login_successful, Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getApplicationContext(), ElderView.class));
                             finish();
                         } else {
-                            Toast.makeText(FirstLogin.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(FirstLogin.this, R.string.toast_authentication_failed, Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -72,10 +72,10 @@ public class FirstLogin extends AppCompatActivity {
 
     private boolean isFormCorrect(String personalNbr, String pin) {
         if (TextUtils.isEmpty(personalNbr)){
-            Toast.makeText(FirstLogin.this, "Enter Email", Toast.LENGTH_SHORT).show();
+            Toast.makeText(FirstLogin.this, R.string.toast_enter_email, Toast.LENGTH_SHORT).show();
             return false;
         } else if (TextUtils.isEmpty(pin)){
-            Toast.makeText(FirstLogin.this, "Enter Password", Toast.LENGTH_SHORT).show();
+            Toast.makeText(FirstLogin.this, R.string.toast_enter_pin_code, Toast.LENGTH_SHORT).show();
             return false;
         } else {
             return true;

@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     RadioButton rbEnglish, rbSwedish;
     TextView welcome;
     TextView info;
+    String text;
     @Override
     public void onStart() {
         super.onStart();
@@ -78,10 +79,9 @@ public class MainActivity extends AppCompatActivity {
         welcome = findViewById(R.id.welcomeText);
         info = findViewById(R.id.infoText);
 
-
         email = getLocalString(PREF_KEY);
 
-        String lang = getLocale();
+        String lang = LocaleHelper.getLocale(MainActivity.this);
         LocaleHelper.setLocale(MainActivity.this, lang);
         welcome.setText(R.string.welcome);
         info.setText(R.string.enter_4_digit_pin);
@@ -91,7 +91,9 @@ public class MainActivity extends AppCompatActivity {
         if(email == null){
             twUserEmail.setText("");
         } else {
-            twUserEmail.setText("Log in as " + email);
+            text = String.valueOf(twUserEmail.getText());
+            text = text + " " + email;
+            twUserEmail.setText(text);
         }
         signUpNewElderBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -142,22 +144,40 @@ public class MainActivity extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 if(i == R.id.rb_english) {
                     LocaleHelper.setLocale(MainActivity.this,"en");
-                    saveLocale("en");
+                    LocaleHelper.saveLocale(MainActivity.this, "en");
                     rbEnglish.setChecked(true);
                     welcome.setText(R.string.welcome);
                     info.setText(R.string.enter_4_digit_pin);
                     loginCode.setHint(R.string.input_4_digit_pin);
                     loginBtn.setText(R.string.login);
                     firstLoginBtn.setText(R.string.login_elderly);
+                    signUpNewElderBtn.setText(R.string.sign_up_new_elder);
+                    if(email == null){
+                        twUserEmail.setText("");
+                    } else {
+                        twUserEmail.setText(R.string.log_in_as);
+                        text = String.valueOf(twUserEmail.getText());
+                        text = text + " " + email;
+                        twUserEmail.setText(text);
+                    }
                 } else if (i == R.id.rb_swedish) {
                     LocaleHelper.setLocale(MainActivity.this, "sv");
-                    saveLocale("sv");
+                    LocaleHelper.saveLocale(MainActivity.this, "sv");
                     rbSwedish.setChecked(true);
                     welcome.setText(R.string.welcome);
                     info.setText(R.string.enter_4_digit_pin);
                     loginCode.setHint(R.string.input_4_digit_pin);
                     loginBtn.setText(R.string.login);
                     firstLoginBtn.setText(R.string.login_elderly);
+                    signUpNewElderBtn.setText(R.string.sign_up_new_elder);
+                    if(email == null){
+                        twUserEmail.setText("");
+                    } else {
+                        twUserEmail.setText(R.string.log_in_as);
+                        text = String.valueOf(twUserEmail.getText());
+                        text = text + " " + email;
+                        twUserEmail.setText(text);
+                    }
                 }
             }
         });
@@ -178,16 +198,6 @@ public class MainActivity extends AppCompatActivity {
         } else {
             return true;
         }
-    }
-    private void saveLocale(String lang) {
-        SharedPreferences preferences = getSharedPreferences("Languages", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putString(LocaleHelper.LANG_PREF, lang);
-        editor.apply();
-    }
-    private String getLocale() {
-        SharedPreferences preferences = getSharedPreferences("Languages", Context.MODE_PRIVATE);
-        return preferences.getString(LocaleHelper.LANG_PREF, "NA");
     }
 
     //NOTIFICATIONPART
